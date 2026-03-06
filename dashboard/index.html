@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINA-RED: Adversarial AI Unit</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 id="title" class="title" aria-live="polite"></h1>
+      <div class="controls">
+        <label class="toggle-label">
+          <span class="toggle-text">Data Source:</span>
+          <input type="checkbox" id="dataSource" class="toggle" aria-label="Switch data source">
+          <span class="toggle-slider"></span>
+          <span class="toggle-option" data-active="live">Live</span>
+          <span class="toggle-option" data-active="file">File</span>
+        </label>
+        <div class="report-buttons">
+          <button id="reportHtml" class="btn btn-primary">Report (HTML)</button>
+          <button id="reportDoc" class="btn btn-secondary">Report (DOC)</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="heatmap-section">
+        <h2 class="section-title">Risk Heatmap</h2>
+        <div class="heatmap" id="heatmap">
+          <div class="heatmap-bar" data-module="prompt_injection">
+            <span class="heatmap-label">Prompt Injection</span>
+            <div class="heatmap-track">
+              <div class="heatmap-fill" style="width: 0%"></div>
+            </div>
+            <span class="heatmap-value">0%</span>
+          </div>
+          <div class="heatmap-bar" data-module="pii_leakage">
+            <span class="heatmap-label">PII Leakage</span>
+            <div class="heatmap-track">
+              <div class="heatmap-fill" style="width: 0%"></div>
+            </div>
+            <span class="heatmap-value">0%</span>
+          </div>
+          <div class="heatmap-bar" data-module="toxicity_bias">
+            <span class="heatmap-label">Toxicity & Bias</span>
+            <div class="heatmap-track">
+              <div class="heatmap-fill" style="width: 0%"></div>
+            </div>
+            <span class="heatmap-value">0%</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="activity-section">
+        <h2 class="section-title">Activity Feed</h2>
+        <div class="table-wrapper">
+          <table class="activity-table">
+            <thead>
+              <tr>
+                <th>Attack ID</th>
+                <th>Module</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="activityBody">
+              <!-- Rows injected via JS with textContent -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span id="connectionStatus" class="status-indicator">Connecting...</span>
+      <span id="logCount">0 attacks logged</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
